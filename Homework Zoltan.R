@@ -144,8 +144,8 @@ summary(data_sample_3)#Summary
 e_model <- lmer(pain ~ age + sex + STAI_trait + pain_cat + mindfulness + cortisol_serum + (1|hospital), data = data_sample_3)#Creating linear mixed model 
 summary(e_model)#Summary
 (d_model <- lmer(pain ~ cortisol_serum +(cortisol_serum|hospital), data = data_sample_3))
-cAIC(e_model)
-cAIC(d_model)#Model fit 
+cAIC(e_model)$caic
+cAIC(d_model)$caic#Model fit 
 r.squaredGLMM(e_model)
 r.squaredGLMM(d_model)#Conditional/Marginal r^2
 data_sample_4 = read.csv("https://raw.githubusercontent.com/kekecsz/PSYP14-Advanced-Scientific-Methods/main/Home%20assignment/home_sample_4.csv")
@@ -180,8 +180,8 @@ data_sample_3 %>%
   geom_line(color="red", aes(y=pred_slope, x = cortisol_serum))+
   facet_wrap(~hospital, ncol= 2)#random slope model
 View(data_sample_3)
-sum(residuals(e_model)^2)
 sum(residuals(d_model)^2)
+sum(residuals(mod_rnd_int)^2)
 
 #APA GRAPHS####
 (as_plot <- tab_model (model_age_sex, show.est = TRUE, show.std = TRUE, show.p = TRUE))#Age_sex model
